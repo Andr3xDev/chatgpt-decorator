@@ -1,6 +1,14 @@
-AI Integration Service
+<div align="center">
+  
+<h1 align="center">AI Integration Service</h1>
 
+<p align="center">
 Application for interacting with Generative AI models like ChatGPT or Copilot, focusing on efficient resource utilization and flexible response processing through the application of design patterns.
+</p>
+
+</div>
+
+</br>
 
 ## 🚀 How it Works
 
