@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.aygo</groupId>
@@ -45,22 +46,22 @@
 
         <!-- MockWebServer para pruebas -->
         <dependency>
-    <groupId>com.squareup.okhttp3</groupId>
-    <artifactId>mockwebserver</artifactId>
-    <version>5.0.0-alpha.14</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>com.squareup.okhttp3</groupId>
-    <artifactId>okhttp</artifactId>
-    <version>5.0.0-alpha.14</version>
-</dependency>
-<dependency>
-    <groupId>com.azure</groupId>
-    <artifactId>azure-ai-openai</artifactId>
-    <version>1.0.0-beta.12</version>
-    <type>jar</type>
-</dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>5.0.0-alpha.14</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>5.0.0-alpha.14</version>
+        </dependency>
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-ai-openai</artifactId>
+            <version>1.0.0-beta.12</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>be.yildiz-games</groupId>
             <artifactId>common-mapping</artifactId>
@@ -70,23 +71,23 @@
     </dependencies>
 
     <build>
-    <plugins>
-        <plugin>
-           <groupId>org.codehaus.mojo</groupId>
-           <artifactId>exec-maven-plugin</artifactId>
-           <version>3.1.0</version>
-           <configuration>
-               <mainClass>com.aygo.aiintegration.AiIntegrationApplication</mainClass>
-           </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>3.3.6</version>
-            <configuration>
-                <mainClass>com.aygo.aiintegration.AiIntegrationApplication</mainClass>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>com.aygo.aiintegration.AiIntegrationApplication</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.3.6</version>
+                <configuration>
+                    <mainClass>com.aygo.aiintegration.AiIntegrationApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
