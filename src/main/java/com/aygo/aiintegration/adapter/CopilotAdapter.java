@@ -22,4 +22,3 @@ public class CopilotAdapter implements IAiAdapter {
         return "código";
     }
 }
-
