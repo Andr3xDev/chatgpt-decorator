@@ -13,9 +13,8 @@ public class TruncateResponseDecorator extends IAAdapterDecorator {
 
     @Override
     public String generateResponse(String input) {
-        String originalResponse = super.generateResponse(input); // Obtiene la respuesta
+        String originalResponse = super.generateResponse(input);
         if (originalResponse != null && originalResponse.length() > maxLength) {
-            // Trunca la respuesta y añade puntos suspensivos
             return originalResponse.substring(0, maxLength) + "...";
         }
         return originalResponse;

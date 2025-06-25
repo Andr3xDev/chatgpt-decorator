@@ -26,7 +26,7 @@ public class AiService {
                 .ifPresent(InputAnalyzer::setChatGptAdapter);
     }
 
-    public String generateDecoratedResponse(String input, AiServiceOptions options) {
+    public String generateResponse(String input, AiServiceOptions options) {
         String cleanedInput = InputAnalyzer.cleanInput(input);
         boolean isCode = InputAnalyzer.isCode(cleanedInput);
         String newInput = InputAnalyzer.improveInput(cleanedInput, isCode);
@@ -45,8 +45,7 @@ public class AiService {
             currentAdapter = new ShortResponsePromptDecorator(currentAdapter);
         }
         if (options.isTruncateResponse()) {
-            currentAdapter = new TruncateResponseDecorator(currentAdapter, options.getMaxLength()); // Pasa la longitud
-                                                                                                    // máxima
+            currentAdapter = new TruncateResponseDecorator(currentAdapter, options.getMaxLength());
         }
 
         return currentAdapter.generateResponse(newInput);
