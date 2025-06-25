@@ -14,7 +14,12 @@ public class ChatGptAdapter implements IAiAdapter {
 
     @Override
     public String generateResponse(String input) {
-        return controller.generateResponse(input).getBody();
+        try {
+            return controller.generateRawResponse(input);
+        } catch (Exception e) {
+            System.err.println("Error en ChatGptAdapter al generar respuesta: " + e.getMessage());
+            return "Error al generar respuesta de ChatGPT: " + e.getMessage();
+        }
     }
 
     @Override

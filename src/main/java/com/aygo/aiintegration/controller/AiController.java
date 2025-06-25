@@ -28,7 +28,7 @@ public class AiController {
                     .setTruncateResponse(request.isTruncateResponse())
                     .setMaxLength(request.getMaxLength());
 
-            String response = aiService.generateDecoratedResponse(
+            String response = aiService.generateResponse(
                     request.getInput(),
                     options);
 
