@@ -1,49 +1,103 @@
-# AIintegration
-## ESCUELA COLOMBIANA DE INGENIERÍA - AYGO
+AI Integration Service
 
-# Diagrama de Arquitectura
+Application for interacting with Generative AI models like ChatGPT or Copilot, focusing on efficient resource utilization and flexible response processing through the application of design patterns.
 
- ![image](https://github.com/ginnko2019/aaintegration/blob/master/Assets/ArquitecturaAiintegrationS.jpg)
+## 🚀 How it Works
 
-## AWS S3: 
-Servicio de AWS empleado para el despliegue del front-end. Este servicio se emplea comúnmente para alojar documentos. Cómo el front-end posee tecnologías simples es perfecto para poderlo alojar y desplegar.
-## AWS EC2: 
-Máquina virtual de AWS que permite desplegar aplicaciones back-end. Se seleccionó una instancia
-T2-MICRO.
-## AWS Elastic IP: 
-En AWS, el servicio EC2 utiliza direcciones IP dinámicas por razones de seguridad, lo que puede ocasionar problemas de integración con el front-end,
-ya que estas direcciones pueden cambiar en determinados momentos, provocando desconexiones entre el back-end y el front-end. Para solucionar este inconveniente, AWS
-ofrece Elastic IP, que proporciona una direccián IP estática y permite una conexión transparente entre el back-end y el
-front-end.
-Azure OpenAI Service: Este servicio proporciona herramientas y APIs que facilitan la integración de capacidades de procesamiento del lenguaje natural, generación de texto,
-comprensión de lenguaje y otras funcionalidades de IA en aplicaciones y sistemas.
-## OpenAI ChatGPT: Este servicio contiene un conjunto
-de herramientas proporcionadas por OpenAI que permite a desarrolladores y empresas acceder, integrar y utilizar modelos de inteligencia artificial avanzados en sus aplicaciones y
-servicios. Esta plataforma ofrece una variedad de productos y APIs, facilitando el desarrollo de soluciones basadas en
-inteligencia artificial.
+This service acts as an intermediary between client applications and various AI models (currently ChatGPT and GitHub Copilot). It intelligently routes user queries, processes inputs, applies dynamic transformations to AI responses, and ensures efficient resource management.
 
-# Diagrama de Clases
+</br>
+</br>
 
- ![image](https://github.com/ginnko2019/aaintegration/blob/master/Assets/AIIntegrationDiagramClass.jpg)
+## ✨ Features
 
-# Patrones de Software empleados
-Para garantizar una integración adecuada en el prototipo propuesto se emplearon diferentes patrones investigados en el estado del arte de este documento, cada patrón se detallará
-a continuación junto con la forma en que se implementó dentro del software.
-## Patrón de Two-Phase Predictions
-Dentro del prototipo en el front-end que es la aplicación del lado del cliente, se creó un módulo desarrollado en JavaScript que realiza una validación previa de la entrada
-del usuario, con el objetivo de responder preguntas triviales con respuestas pre-programadas, que garantizan el cuidado
-y la optimización de los recursos. Dicho módulo posee internamente un dataSet con datos de preguntas y respuestas
-típicas.
-## Patrón de Componentes Independientes (Independent Components)
-Dentro del back-end del prototipo se implementó un esquema de adaptadores abstractos, que permite adicionar
-nuevos controladores de herramientas de IA sin necesidad de realizar modificaciones mayores en el código. Esto permite
-que el software sea escalable y fácilmente mantenible en el tiempo.
-## Patrón de Validación de Entradas 
-Cuando la petición llega al back-end desde la aplicación de Cliente, la entrada se procesa mediante una clase llamada
-InputAnalizer, esta clase se encarga de analizar el contenido de la respuesta para determinar si esta debe ser mejorada
-(se utiliza otro controlador de IA para lograrlo), si contiene caracteres inválidos que necesiten ser ajustados o si está lista
-para ser procesada por los modelos de IA. 
-## Patrón Adaptador
-Este patrón va muy de la mano con el patrón de com- ponentes independientes, dentro de la solución propuesta
-se empleó como un medio de estandarización que permite los controladores de las IA se puedan adaptar fácilmente al
-software cumpliendo un contrato funcional, que garantiza que cada uno de estos implemente los métodos necesarios para poder integrarse efectivamente con la aplicación. 
+- AI Model Integration: Seamlessly connect with different AI providers.
+- Intelligent Routing: Directs requests to appropriate AI models based on input type.
+- Input Pre-processing: Cleans and enhances user input before sending it to the AI.
+- Dynamic Response Decoration: Allows for on-the-fly modification of AI responses.
+- Resource Optimization: Employs strategies to reduce unnecessary calls to external AI APIs.
+
+</br>
+</br>
+
+## 📐 Design Patterns Used
+
+This project leverages several fundamental design patterns to ensure maintainability, scalability, and code quality:
+
+- Decorator Pattern: Dynamically adds functionalities to AI responses (e.g., truncating, formatting, or adjusting conciseness) without altering the core AI adapter logic. This allows for flexible and combinable post-processing.
+- Independent Components Pattern: Achieved through an abstract adapter scheme (IAiAdapter). This design allows for adding new AI controllers (e.g., for Bard, Llama) with minimal code changes, making the system highly scalable and maintainable.
+- Adapter Pattern: Works in conjunction with Independent Components. It standardizes the integration of different AI tools by providing a common functional contract (IAiAdapter). Each AI controller (like ChatGPTController or CopilotController) is wrapped by an adapter, ensuring they conform to the application's interface requirements.
+- Two-Phase Predictions Pattern: Implemented on the frontend (client-side application), where a JavaScript module performs a preliminary validation of user input. This module uses a predefined dataset to answer trivial questions with pre-programmed responses, optimizing resource usage by reducing calls to the more expensive external AI APIs.
+
+</br>
+</br>
+
+## 🛠️ Getting Started
+
+Prerequisites:
+
+* Java 17 or higher
+* Maven or Gradle
+* Git
+
+Installation
+
+```sh
+combinablelone the repository:
+git clone https://github.com/Andr3xDev/ARSW-ChatGPT.git 
+cd your-ai-integration-project
+```
+
+Configure API Keys and Endpoints:
+
+Create an application.properties file in src/main/resources/ with the following config:
+
+- For OpenAI (ChatGPT)
+    
+    api.chatgpt.key=${OPENAI_API_KEY}
+    api.chatgpt.url=${OPENAI_API_URL:https://api.openai.com/v1/chat/completions}
+
+- For GitHub Copilot (Azure OpenAI) - if applicable, otherwise remove
+    api.copilot.key=${AZURE_COPILOT_API_KEY}
+    api.copilot.url=${AZURE_COPILOT_API_URL}
+
+
+Running the Application
+
+Use Maven to build and run the Spring Boot application:
+
+```sh
+mvn spring-boot:run
+```
+
+The application will typically start on http://localhost:8080.
+
+![start](docs/compile.png)
+
+![run](docs/run.png)
+
+</br>
+</br>
+
+## 🚀 Usage Examples
+
+You can interact with the API using tools like Postman, curl, or any HTTP client.
+Endpoint
+
+- Request structure
+
+```sh
+{
+    "input": <pront>,
+    "aiType": <model>,
+    "shortResponse": <boolean>,
+    "truncateResponse": <boolean>,
+    "maxLength": <int>
+}
+```
+
+- Expected Response: STRING
+
+![p1](docs/p1.png)
+
+![p2](docs/p2.png)
